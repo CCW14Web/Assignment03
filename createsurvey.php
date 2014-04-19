@@ -12,6 +12,7 @@
 
     <title>Project Survey - Create Survey</title>
     <!--User javascript file-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/createsurvey.css">
 
     <!--jQuery on CND-->
@@ -23,8 +24,30 @@
 </head>    
 
 <body>
+    <div class="banner">Welcome to Project Survey</div>
+
+    <!--navigation bar-->
+    <div id='topnav'>
+        <my_menu><a class="m_normal" href='login.php'>Login</a></my_menu>
+        <my_menu><a class="m_active" href='createsurvey.php'>Create Survey</a></my_menu>
+        <my_menu><a class="m_normal" href='takesurvey.php'>Take Survey</a></my_menu>
+        <my_menu><a class="m_normal" href='registration.php'>Registration</a></my_menu>
+        <my_menu><a class="m_normal" href='edituser.php'>Edit User</a></my_menu>
+        <my_menu><a class="m_normal" href='surveyresponses.php'>Survery Responses</a></my_menu>
+    </div>
     
-    
+    <?php
+    session_start();
+    $_SESSION["username"] = 'Johnny';
+    $_SESSION["isloggedin"] = true;
+    if(isset($_POST["username"]))
+    {    
+        
+    }
+    else{
+        echo "Please Login";
+    }
+    ?>
     
     
 </body>
