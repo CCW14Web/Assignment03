@@ -8,7 +8,7 @@
 <?php
     session_start();//Session starting
     $sid =$_GET["sid"];
-    $dsn = 'mysql:host=127.0.0.1;dbname=dbSurvey';
+    $dsn = 'mysql:host=127.0.0.1;dbname=dbsurvey';
     $username = 'root';
     $password = '';
     
@@ -51,7 +51,7 @@
         <div id="container">          <!--  Container class  !-->
         
         <?php
-        if(isset($_SESSION["username"]))
+        if(isset($_SESSION["name"]))
         {   // if user login
             $saved_question_id = 0;
             if (isset($_POST["Control"]))
@@ -103,7 +103,7 @@
                 $question_id = 0;
                 $query = "select * from questions where surveyid=" . $sid . " limit 0,1 ;"; // load first question or no question
                 $records = $db->query($query);
-                $row = $records->fetch(PDO::FETCH_ASSOC);
+                $row = $records->fetch();
             }
     
             $question_title="";

@@ -20,7 +20,7 @@ $isactive = $_POST["active"];
 
     if(isset($_SESSION["username"]))
     {    
-      $dsn = 'mysql:host=127.0.0.1;dbname=dbSurvey';
+      $dsn = 'mysql:host=127.0.0.1;dbname=dbsurvey';
       $username = 'root';
       $password = '';
       
@@ -39,7 +39,7 @@ $isactive = $_POST["active"];
       //echo $query;
       //echo($records);
       
-      header("Location: createsurvey.php");
+      header("Location: createsurvey.php");   // you need to assign createsurvey_questions.php?sid=1 in order to load the survey
       exit();
        
     }

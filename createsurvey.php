@@ -1,6 +1,6 @@
 <?php/*
   Document   : create survey.php
-  Created on : 
+  Created on : 22/4/2014
   Author     : Zhixiang Hu
   Description: create or modify survry page
  */
@@ -34,19 +34,23 @@
 
 
 
-    <body>                                      <!-- Body of the page -->
-        <?php include 'header/header.php'; ?>              <!-- End of Menu -->
-
+    <body>   
+        <!-- Body of the page -->
+        
+ <?php include 'header/header.php'; ?>              <!-- End of Menu -->
+ <div class="row-fluid">
 
 
         <div id="container">          <!--  Container class  !-->
 	<?php
 
-	  $_SESSION["username"] = 'jjhu';
-	  $_SESSION["isloggedin"] = true;
-	  if(isset($_SESSION["username"]))
+	 
+	  if(isset($_SESSION["name"]))
 	  {    
-	      $dsn = 'mysql:host=127.0.0.1;dbname=dbSurvey';
+               $_SESSION["username"]=$_SESSION["name"];
+              // echo $_SESSION["username"];
+               $_SESSION["isloggedin"] = true;
+	      $dsn = 'mysql:host=127.0.0.1;dbname=dbsurvey';
 	      $username = 'root';
 	      $password = '';
 	      
@@ -80,24 +84,22 @@
 		      }else
 		      {  echo "<tr>";
 		      }
-		      echo "<td>". $row['id']. "</td><td>"  . $row['Title'] . "</td><td>". $row['StartDate'] ."</td><td>". $row['EndDate'] ."</td><td>". $row['Category'] ."</td><td>". $row['FirstName'] ." ". $row["LastName"] ."</td><td>". $row['isActive'] ."</td><td><p onclick='showSurvey(" .  $row['id']. ");' class='btn btn-lg btn-default'>Edit</p> <p onclick='modifyQuestions(" . $row['id'] . ");' class='btn btn-lg btn-default'> Modify Questions </p></td></tr>";
+		      echo "<td>". $row['id']. "</td><td>"  . $row['Title'] . "</td><td>". $row['StartDate'] ."</td><td>". $row['EndDate'] ."</td><td>". $row['Category'] ."</td><td>". $row['FirstName'] ." ". $row["LastName"] ."</td><td>". $row['isActive'] ."</td><td><p onclick='showSurvey(" .  $row['id']. ");' class='btn btn-lg btn-default'>Edit</p> <p onclick='modifyQuestions(" . $row['id'] . ");' class='btn btn-lg btn-default'> Add/Modify Questions </p></td></tr>";
 		  }
+              }
 		  ?>
 		  </table>
 		  <button id="btn_new_survey" class="btn btn-lg btn-primary pull-right" type="button">New Survey</button>
 		  
-		  <?php
-	      }
-	  }
-	  else{	      echo "Please Login";	  }
-	  ?>
+		
+	 
 	      <div id="edit_survey_panel">
 		  <form action="createsurvey_save.php" method="post">
 		      <table id="edit_survey_table">
 			  <tr><td>Survey Title:</td><td><input type="text" name="title" maxlength="50" size="30"></td><td class='input_characters'>(50 max)</td></tr>
 			  <tr><td>Survey Description:</td><td><input type="text" name="description" maxlength="100" size="50"></td><td class='input_characters'>(100 max)</td></tr>
-			  <tr><td>Start Date:</td><td><input type="text" maxlength="10" data-beatpicker="true" data-beatpicker-position="['right','*']" data-beatpicker-module="clear" name="startdate"></td><td class='input_characters'></td></tr>
-			  <tr><td>End Date:</td><td><input type="text" maxlength="10" data-beatpicker="true" data-beatpicker-position="['right','*']" data-beatpicker-module="clear" name="enddate"></td><td class='input_characters'></td></tr>
+			  <tr><td>Start Date:</td><td><input type="date" maxlength="10" data-beatpicker="true" data-beatpicker-position="['right','*']" data-beatpicker-module="clear" name="startdate"></td><td class='input_characters'></td></tr>
+			  <tr><td>End Date:</td><td><input type="date" maxlength="10" data-beatpicker="true" data-beatpicker-position="['right','*']" data-beatpicker-module="clear" name="enddate"></td><td class='input_characters'></td></tr>
 			  <tr><td>Response Limit:</td><td><input type="text" name="responselimit" maxlength="5" size="5"></td><td class='input_characters'>(1-999)</td></tr>
 			  <tr><td>Category:</td><td><input type="text" name="category" maxlength="30" size="30"></td><td class='input_characters'>(30 max)</td></tr>
 			  <tr><td>Active</td><td>
@@ -115,7 +117,23 @@
 
         </div>                                       <!--  Ends Container class  !-->
   
-
+</div>
+                 <?php  }
+                 
+	  else{
+              
+              ?> <div class="span12">
+                  <div class="span4">
+                      
+                  </div>
+                  <div class="span7">
+                      <h2>Please login to Create a survey</h2>
+                  </div>
+              </div>
+              <?php
+                 
+          }
+	  ?>
     <?php include 'include/footer.php'; ?>           <!--  Including the Footer  !-->   
 
 
